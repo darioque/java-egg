@@ -14,7 +14,10 @@ public class App {
         // ej09(leer);
         // ej10(leer);
         // ej11(leer);
-        ej12(leer);
+        // ej12(leer);
+        // ej13(leer);
+        // ej14(leer, 500, "dolares");
+        
         leer.close();
 
     }
@@ -231,6 +234,60 @@ public class App {
         System.out.println("Correctas: " + correctas);
         System.out.println("Incorrectas: " + incorrectas);
     }
+    
+    // dibujar un cuadrado de N elementos por lado utilizando el
+    // caracter "*" . Por ejemplo, si el cuadrado tiene 4 elementos por lado se
+    // deberá dibujar lo siguiente:
+    // * * * *
+    // *     *
+    // *     *
+    // * * * *
+
+    public static void ej13(Scanner leer) {
+        int n = leer.nextInt();
+        for (int i = 0; i < n; i++) {
+            System.out.print("* ");
+        }
+        System.out.println();
+        for (int i = 0; i < n - 2; i++) {
+            System.out.print("* ");
+            for (int j = 0; j < n - 2; j++) {
+                System.out.print("  ");
+            }
+            System.out.println("* ");
+        }
+        for (int i = 0; i < n; i++) {
+            System.out.print("* ");
+        }
+    }
+
+    //Crea una aplicacion que a través de una funcion nos convierta
+    // una cantidad de euros introducida por teclado a otra moneda,
+    // estas pueden ser a dolares, yenes o libras. La función tendrá
+    // como parámetros, la cantidad de euros y la moneda a convertir
+    // que será una cadena, este no devolverá ningun valor y mostrara
+    // un mensaje indicando el cambio (void)
+
+    public static void ej14(Scanner leer, int cantidad, String moneda) {
+        switch (moneda.toLowerCase()) {
+            case "dolares":
+                System.out.println(cantidad * 1.28611);
+                break;
+            case "yenes":
+                System.out.println(cantidad * 129.852);
+                break;
+            case "libras":
+                System.out.println(cantidad * 0.86);
+                break;
+            default:
+                System.out.println("Moneda incorrecta");
+                break;
+        }
+    }
+
+
+    
+
 
 
 
