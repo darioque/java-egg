@@ -17,7 +17,15 @@ public class App {
         // ej12(leer);
         // ej13(leer);
         // ej14(leer, 500, "dolares");
-        
+        int[][] matrix = new int[3][3];
+        fillMatrix(matrix);
+        showMatrix(matrix);
+        System.out.println();
+        int[][] traspuesta = ej18(matrix);
+        showMatrix(traspuesta);
+        System.out.println();
+        ej19();
+
         leer.close();
 
     }
@@ -122,9 +130,12 @@ public class App {
         }
     }
 
-    //     Realizar un programa que solo permita introducir solo frases o palabras de 8 de largo. Si el
-    // usuario ingresa una frase o palabra de 8 de largo se deberá de imprimir un mensaje por
-    // pantalla que diga “CORRECTO”, en caso contrario, se deberá imprimir “INCORRECTO”.
+    // Realizar un programa que solo permita introducir solo frases o palabras de 8
+    // de largo. Si el
+    // usuario ingresa una frase o palabra de 8 de largo se deberá de imprimir un
+    // mensaje por
+    // pantalla que diga “CORRECTO”, en caso contrario, se deberá imprimir
+    // “INCORRECTO”.
     // Nota: investigar la función Lenght() en Java.
     public static void ej08(Scanner leer) {
         String frase = leer.nextLine();
@@ -134,9 +145,13 @@ public class App {
             System.out.println("Incorrecto");
         }
     }
-    //     Escriba un programa que pida una frase o palabra y valide si la primera letra de esa frase
-    // es una ‘A’. Si la primera letra es una ‘A’, se deberá de imprimir un mensaje por pantalla que
-    // diga “CORRECTO”, en caso contrario, se deberá imprimir “INCORRECTO”. Nota: investigar
+
+    // Escriba un programa que pida una frase o palabra y valide si la primera letra
+    // de esa frase
+    // es una ‘A’. Si la primera letra es una ‘A’, se deberá de imprimir un mensaje
+    // por pantalla que
+    // diga “CORRECTO”, en caso contrario, se deberá imprimir “INCORRECTO”. Nota:
+    // investigar
     // la función Substring y equals() de Java.
     public static void ej09(Scanner leer) {
         String frase = leer.nextLine();
@@ -167,10 +182,14 @@ public class App {
     // 1. Sumar 2. Restar 3. Multiplicar 4. Dividir 5. Salir Elija opción:
     // El usuario deberá elegir una opción y el programa deberá mostrar el resultado
     // por pantalla y luego volver al menú. El programa deberá ejecutarse hasta que
-    // se elija la opción 5. Tener en cuenta que, si el usuario selecciona la opción 5,
-    // en vez de salir del programa directamente, se debe mostrar el siguiente mensaje
-    // de confirmación: ¿Está seguro que desea salir del programa (S/N)? Si el usuario
-    // selecciona el carácter ‘S’ se sale del programa, caso contrario se vuelve a mostrar el menú.
+    // se elija la opción 5. Tener en cuenta que, si el usuario selecciona la opción
+    // 5,
+    // en vez de salir del programa directamente, se debe mostrar el siguiente
+    // mensaje
+    // de confirmación: ¿Está seguro que desea salir del programa (S/N)? Si el
+    // usuario
+    // selecciona el carácter ‘S’ se sale del programa, caso contrario se vuelve a
+    // mostrar el menú.
 
     public static void ej11(Scanner leer) {
         int num1 = leer.nextInt();
@@ -209,15 +228,22 @@ public class App {
         }
     }
 
-    // Realizar un programa que simule el funcionamiento de un dispositivo RS232, este tipo de
-    // dispositivo lee cadenas enviadas por el usuario. Las cadenas deben llegar con un formato
-    // fijo: tienen que ser de un máximo de 5 caracteres de largo, el primer carácter tiene que ser
+    // Realizar un programa que simule el funcionamiento de un dispositivo RS232,
+    // este tipo de
+    // dispositivo lee cadenas enviadas por el usuario. Las cadenas deben llegar con
+    // un formato
+    // fijo: tienen que ser de un máximo de 5 caracteres de largo, el primer
+    // carácter tiene que ser
     // X y el último tiene que ser una O.
-    // Las secuencias leídas que respeten el formato se consideran correctas, la secuencia especial
-    // “&&&&&” marca el final de los envíos (llamémosla FDE), y toda secuencia distinta de FDE, que
+    // Las secuencias leídas que respeten el formato se consideran correctas, la
+    // secuencia especial
+    // “&&&&&” marca el final de los envíos (llamémosla FDE), y toda secuencia
+    // distinta de FDE, que
     // no respete el formato se considera incorrecta.
-    // Al finalizar el proceso, se imprime un informe indicando la cantidad de lecturas correctas e
-    // incorrectas recibidas. Para resolver el ejercicio deberá investigar cómo se utilizan las siguientes
+    // Al finalizar el proceso, se imprime un informe indicando la cantidad de
+    // lecturas correctas e
+    // incorrectas recibidas. Para resolver el ejercicio deberá investigar cómo se
+    // utilizan las siguientes
     // funciones de Java Substring(), Length(), equals().
     public static void ej12(Scanner leer) {
         String cadena = leer.nextLine();
@@ -234,13 +260,13 @@ public class App {
         System.out.println("Correctas: " + correctas);
         System.out.println("Incorrectas: " + incorrectas);
     }
-    
+
     // dibujar un cuadrado de N elementos por lado utilizando el
     // caracter "*" . Por ejemplo, si el cuadrado tiene 4 elementos por lado se
     // deberá dibujar lo siguiente:
     // * * * *
-    // *     *
-    // *     *
+    // * *
+    // * *
     // * * * *
 
     public static void ej13(Scanner leer) {
@@ -261,7 +287,7 @@ public class App {
         }
     }
 
-    //Crea una aplicacion que a través de una funcion nos convierta
+    // Crea una aplicacion que a través de una funcion nos convierta
     // una cantidad de euros introducida por teclado a otra moneda,
     // estas pueden ser a dolares, yenes o libras. La función tendrá
     // como parámetros, la cantidad de euros y la moneda a convertir
@@ -285,10 +311,139 @@ public class App {
         }
     }
 
+    // Realizar un algoitmo que rellene un vector con los 100
+    // primeros numeros enteros y los muestre por pantalla en orden
+    // descendente.
+    public static void ej15(Scanner leer) {
+        int[] vector = new int[100];
+        for (int i = 0; i < vector.length; i++) {
+            vector[i] = i + 1;
+        }
+        for (int i = vector.length - 1; i >= 0; i--) {
+            System.out.println(vector[i]);
+        }
+    }
+
+    // Realizar un algoritmo que rellene un vector de tamaño
+    // N con valores aleatorios y le pida al usuario un numero a buscar
+    // en el vector. El programa mostrará donde se encuentra el numero
+    // y si se encuentra repetido.
+    public static void ej16(Scanner leer) {
+        int[] vector = new int[100];
+        for (int i = 0; i < vector.length; i++) {
+            vector[i] = (int) (Math.random() * 100);
+        }
+        int num = leer.nextInt();
+        boolean encontrado = false;
+        for (int i = 0; i < vector.length; i++) {
+            if (vector[i] == num) {
+                System.out.println("El numero se encuentra en la posicion " + i);
+                encontrado = true;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("El numero no se encuentra en el vector");
+        }
+    }
+
+    // Recorrer un vector de N eneteros contabilizando cuantos numeros
+    // de un digito hay, cuantos de dos digitos, etc. (hasta 5 digitos).
+    public static void ej17(Scanner leer) {
+        int[] vector = new int[100];
+        for (int i = 0; i < vector.length; i++) {
+            vector[i] = (int) (Math.random() * 100000);
+        }
+        int[] contadores = new int[5];
+        for (int i = 0; i < vector.length; i++) {
+            if (vector[i] < 10) {
+                contadores[0]++;
+            } else if (vector[i] < 100) {
+                contadores[1]++;
+            } else if (vector[i] < 1000) {
+                contadores[2]++;
+            } else if (vector[i] < 10000) {
+                contadores[3]++;
+            } else {
+                contadores[4]++;
+            }
+        }
+        for (int i = 0; i < contadores.length; i++) {
+            System.out.println("Cantidad de numeros de " + (i + 1) + " digito: " + contadores[i]);
+        }
+    }
+
+    // Realizar un programa que rellene un matriz de 4 x 4 de valores
+    // aleatorios y muestre la traspuesta de la matriz. La traspuesta de
+    // una matriz es intercambiar las filas por las columnas.
+    public static int[][] ej18(int[][] matrix) {
+        int[][] traspuesta = new int[matrix.length][matrix.length];
+
+        for (int i = 0; i < traspuesta.length; i++) {
+            for (int j = 0; j < traspuesta[i].length; j++) {
+                traspuesta[i][j] = matrix[j][i];
+            }
+        }
+        return traspuesta;
+    }
+
+    public static int[][] fillMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = (int) (Math.random() * 100);
+            }
+        }
+        return matrix;
+    }
+
+    public static void showMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            System.out.println();
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+        }
+    }
+
+    public static void ej19() {
+        System.out.println("Comprobar si una matriz es anti simetrica");
+        int[][] matrix = new int[3][3];
+
+        fillMatrix(matrix);
+        
+
+        int[][] traspuesta = ej18(matrix);
+
+        boolean antiSimetrica = true;
+
+        // force matrix to be antisimetric to test
+        // for (int i = 0; i < matrix.length; i++) {
+        //     for (int j = 0; j < matrix.length; j++) {
+        //         matrix[i][j] = traspuesta[i][j] * - 1;
+        //     }
+        // }
+        showMatrix(matrix);
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] != traspuesta[i][j] * -1) {
+                    antiSimetrica = false;
+                    break;
+                }
+            }
+        }
+        System.out.println();
+        showMatrix(traspuesta);
+
+        System.out.println();
+        if (antiSimetrica) {
+            System.out.println("Es antisimetrica");
+        } else {
+            System.out.println("No es antisimetrica");
+        }
+
+    }
 
     
-
-
 
 
 }
