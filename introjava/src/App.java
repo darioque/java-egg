@@ -17,14 +17,15 @@ public class App {
         // ej12(leer);
         // ej13(leer);
         // ej14(leer, 500, "dolares");
-        int[][] matrix = new int[3][3];
-        fillMatrix(matrix);
-        showMatrix(matrix);
-        System.out.println();
-        int[][] traspuesta = ej18(matrix);
-        showMatrix(traspuesta);
-        System.out.println();
-        ej19();
+        // int[][] matrix = new int[3][3];
+        // fillMatrix(matrix);
+        // showMatrix(matrix);
+        // System.out.println();
+        // int[][] traspuesta = ej18(matrix);
+        // showMatrix(traspuesta);
+        // System.out.println();
+        // ej19();
+        ej20(leer);
 
         leer.close();
 
@@ -395,14 +396,6 @@ public class App {
         return matrix;
     }
 
-    public static void showMatrix(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            System.out.println();
-            for (int j = 0; j < matrix[i].length; j++) {
-                System.out.print(matrix[i][j] + " ");
-            }
-        }
-    }
 
     public static void ej19() {
         System.out.println("Comprobar si una matriz es anti simetrica");
@@ -440,10 +433,95 @@ public class App {
         } else {
             System.out.println("No es antisimetrica");
         }
+    }
 
+    public static void ej20(Scanner leer) {
+        // constants for matrix
+        final int MATRIX_SIZE = 3;
+        final int MIN_NUMBER = 1;
+        final int MAX_NUMBER = 9;
+
+        int[][] matrix = new int[MATRIX_SIZE][MATRIX_SIZE];
+        int[] sumas = new int[2 * MATRIX_SIZE + 2];
+        boolean magico = true;
+
+        // Fill matrix and calculate sums
+        fillMatrix(matrix, leer, MIN_NUMBER, MAX_NUMBER);
+        calculateSums(matrix, sumas);
+
+        // Check if all sums are equal
+        for (int i = 0; i < sumas.length - 1; i++) {
+            if (sumas[i] != sumas[i + 1]) {
+                magico = false;
+                break;
+            }
+        }
+
+        showMatrix(matrix);
+        System.out.println();
+        if (magico) {
+            System.out.println("Es mágico");
+        } else {
+            System.out.println("No es mágico");
+        }
+    }
+
+    public static void fillMatrix(int[][] matrix, Scanner leer, int minNumber, int maxNumber) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                do {
+                    System.out.println("Ingrese un número entre " + minNumber + " y " + maxNumber);
+                    matrix[i][j] = leer.nextInt();
+                } while (matrix[i][j] < minNumber || matrix[i][j] > maxNumber);
+            }
+        }
+    }
+
+    public static void calculateSums(int[][] matrix, int[] sumas) {
+        int size = matrix.length;
+
+        for (int i = 0; i < size; i++) {
+            int rowSum = 0;
+            int colSum = 0;
+            sumas[i] = 0; // Rows sum
+            sumas[i + size] = 0; // Columns sum
+
+            for (int j = 0; j < size; j++) {
+                rowSum += matrix[i][j];
+                colSum += matrix[j][i];
+            }
+
+            sumas[i] = rowSum;
+            sumas[i + size] = colSum;
+        }
+
+        int diagonal1Sum = 0;
+        int diagonal2Sum = 0;
+
+        for (int i = 0; i < size; i++) {
+            diagonal1Sum += matrix[i][i];
+            diagonal2Sum += matrix[i][size - 1 - i];
+        }
+
+        sumas[2 * size] = diagonal1Sum; // Main diagonal sum
+        sumas[2 * size + 1] = diagonal2Sum; // Secondary diagonal sum
+    }
+
+    public static void showMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
     
+
+
+
+
+
 
 
 }
