@@ -2,21 +2,21 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Scanner leer = new Scanner(System.in);
-        // ej01(leer);
-        // ej02(leer);
-        // ej03(leer);
-        // ej04(leer);
-        // ej05(leer);
-        // ej06(leer);
-        // ej07(leer);
-        // ej08(leer);
-        // ej09(leer);
-        // ej10(leer);
-        // ej11(leer);
-        // ej12(leer);
-        // ej13(leer);
-        // ej14(leer, 500, "dolares");
+        Scanner read = new Scanner(System.in);
+        // ej01(read);
+        // ej02(read);
+        // ej03(read);
+        // ej04(read);
+        // ej05(read);
+        // ej06(read);
+        // ej07(read);
+        // ej08(read);
+        // ej09(read);
+        // ej10(read);
+        // ej11(read);
+        // ej12(read);
+        // ej13(read);
+        // ej14(read, 500, "dolares");
         // int[][] matrix = new int[3][3];
         // fillMatrix(matrix);
         // showMatrix(matrix);
@@ -25,9 +25,10 @@ public class App {
         // showMatrix(traspuesta);
         // System.out.println();
         // ej19();
-        ej20(leer);
+        // ej20(read);
+        ej21(read);
 
-        leer.close();
+        read.close();
 
     }
 
@@ -38,10 +39,10 @@ public class App {
         String lastName = "Skidelsky";
         System.out.println("My name is " + name + " " + lastName);
 
-        Scanner leer = new Scanner(System.in);
+        Scanner read = new Scanner(System.in);
 
-        int num1 = leer.nextInt();
-        int num2 = leer.nextInt();
+        int num1 = read.nextInt();
+        int num2 = read.nextInt();
 
         if (num1 > 25 && num2 > 25) {
             System.out.println("Ambos numeros son mayores a 25");
@@ -55,7 +56,7 @@ public class App {
 
         var print = "";
         for (int i = 1; i < 5; i++) {
-            num1 = leer.nextInt();
+            num1 = read.nextInt();
             print = print + num1;
 
             for (int j = 0; j < num1; j++) {
@@ -63,27 +64,27 @@ public class App {
             }
             print = print + "\n";
         }
-        leer.close();
+        read.close();
         System.out.println("\n" + print);
     }
 
-    public static void ej01(Scanner leer) {
-        int num1 = leer.nextInt();
-        int num2 = leer.nextInt();
+    public static void ej01(Scanner read) {
+        int num1 = read.nextInt();
+        int num2 = read.nextInt();
         int suma = num1 + num2;
         System.out.println(suma);
 
     }
 
-    public static void ej02(Scanner leer) {
-        String name = leer.nextLine();
+    public static void ej02(Scanner read) {
+        String name = read.nextLine();
         System.out.println(name);
     }
 
     // Escribir un programa que pida una frase y la meustre toda en mayusculas y
     // despues todas en minusculas, utilizando toUpperCase y toLowerCase.
-    public static void ej03(Scanner leer) {
-        String frase = leer.nextLine();
+    public static void ej03(Scanner read) {
+        String frase = read.nextLine();
         System.out.println(frase.toUpperCase());
         System.out.println(frase.toLowerCase());
     }
@@ -91,8 +92,8 @@ public class App {
     // Dada una cantidad de grados centígrados se debe mostrar
     // su equivalente en grados Fahrenheit.
     // La fórmula correspondiente es: F = 32 + (9 * C / 5).
-    public static void ej04(Scanner leer) {
-        int gradosC = leer.nextInt();
+    public static void ej04(Scanner read) {
+        int gradosC = read.nextInt();
         int gradosF = 32 + (9 * gradosC / 5);
         System.out.println(gradosF);
     }
@@ -100,8 +101,8 @@ public class App {
     // Escribir un programa que lea un numero entero por teclado y muestra
     // por pantalla el doble, el triple y la raiz cuadrada de ese numero, utilizando
     // Math.sqrt().
-    public static void ej05(Scanner leer) {
-        int num = leer.nextInt();
+    public static void ej05(Scanner read) {
+        int num = read.nextInt();
         System.out.println(num * 2);
         System.out.println(num * 3);
         System.out.println(Math.sqrt(num));
@@ -109,8 +110,8 @@ public class App {
 
     // Crear un programa que dado un numero determine si es
     // par o impar.
-    public static void ej06(Scanner leer) {
-        int num = leer.nextInt();
+    public static void ej06(Scanner read) {
+        int num = read.nextInt();
         if (num % 2 == 0) {
             System.out.println("Es par");
         } else {
@@ -122,8 +123,8 @@ public class App {
     // es igual a "eureka" el pgorama pondrá un mensaje de Correcto
     // sino mostrará un mensaje de INncorrecto. Nota: investigar la función
     // equals() en Java.
-    public static void ej07(Scanner leer) {
-        String frase = leer.nextLine();
+    public static void ej07(Scanner read) {
+        String frase = read.nextLine();
         if (frase.equals("eureka")) {
             System.out.println("Correcto");
         } else {
@@ -138,8 +139,8 @@ public class App {
     // pantalla que diga “CORRECTO”, en caso contrario, se deberá imprimir
     // “INCORRECTO”.
     // Nota: investigar la función Lenght() en Java.
-    public static void ej08(Scanner leer) {
-        String frase = leer.nextLine();
+    public static void ej08(Scanner read) {
+        String frase = read.nextLine();
         if (frase.length() == 8) {
             System.out.println("Correcto");
         } else {
@@ -154,8 +155,8 @@ public class App {
     // diga “CORRECTO”, en caso contrario, se deberá imprimir “INCORRECTO”. Nota:
     // investigar
     // la función Substring y equals() de Java.
-    public static void ej09(Scanner leer) {
-        String frase = leer.nextLine();
+    public static void ej09(Scanner read) {
+        String frase = read.nextLine();
         if (frase.substring(0, 1).equals("A")) {
             System.out.println("Correcto");
         } else {
@@ -167,12 +168,12 @@ public class App {
     // positivo, y a continuacion solicite numeros al usuario hasta que la suma
     // de los numeros introducidos supere el limite inicial.
 
-    public static void ej10(Scanner leer) {
-        int limite = leer.nextInt();
+    public static void ej10(Scanner read) {
+        int limite = read.nextInt();
         int suma = 0;
         int num = 0;
         while (suma < limite) {
-            num = leer.nextInt();
+            num = read.nextInt();
             suma = suma + num;
         }
         System.out.println("La suma es: " + suma);
@@ -192,14 +193,14 @@ public class App {
     // selecciona el carácter ‘S’ se sale del programa, caso contrario se vuelve a
     // mostrar el menú.
 
-    public static void ej11(Scanner leer) {
-        int num1 = leer.nextInt();
-        int num2 = leer.nextInt();
+    public static void ej11(Scanner read) {
+        int num1 = read.nextInt();
+        int num2 = read.nextInt();
         int opcion = 0;
         while (opcion != 5) {
             System.out.println("1. Sumar \n2. Restar \n3. Multiplicar \n4. Dividir \n5. Salir \nElija opción:");
-            opcion = leer.nextInt();
-            leer.nextLine(); // Limpio el buffer
+            opcion = read.nextInt();
+            read.nextLine(); // Limpio el buffer
             switch (opcion) {
                 case 1:
                     System.out.println(num1 + num2);
@@ -215,7 +216,7 @@ public class App {
                     break;
                 case 5:
                     System.out.println("¿Está seguro que desea salir del programa (S/N)?");
-                    String confirmacion = leer.nextLine();
+                    String confirmacion = read.nextLine();
                     if (confirmacion.equalsIgnoreCase("S")) {
                         opcion = 5;
                     } else {
@@ -246,8 +247,8 @@ public class App {
     // incorrectas recibidas. Para resolver el ejercicio deberá investigar cómo se
     // utilizan las siguientes
     // funciones de Java Substring(), Length(), equals().
-    public static void ej12(Scanner leer) {
-        String cadena = leer.nextLine();
+    public static void ej12(Scanner read) {
+        String cadena = read.nextLine();
         int correctas = 0;
         int incorrectas = 0;
         while (!cadena.equals("&&&&&")) {
@@ -256,7 +257,7 @@ public class App {
             } else {
                 incorrectas++;
             }
-            cadena = leer.nextLine();
+            cadena = read.nextLine();
         }
         System.out.println("Correctas: " + correctas);
         System.out.println("Incorrectas: " + incorrectas);
@@ -270,8 +271,8 @@ public class App {
     // * *
     // * * * *
 
-    public static void ej13(Scanner leer) {
-        int n = leer.nextInt();
+    public static void ej13(Scanner read) {
+        int n = read.nextInt();
         for (int i = 0; i < n; i++) {
             System.out.print("* ");
         }
@@ -295,7 +296,7 @@ public class App {
     // que será una cadena, este no devolverá ningun valor y mostrara
     // un mensaje indicando el cambio (void)
 
-    public static void ej14(Scanner leer, int cantidad, String moneda) {
+    public static void ej14(Scanner read, int cantidad, String moneda) {
         switch (moneda.toLowerCase()) {
             case "dolares":
                 System.out.println(cantidad * 1.28611);
@@ -315,7 +316,7 @@ public class App {
     // Realizar un algoitmo que rellene un vector con los 100
     // primeros numeros enteros y los muestre por pantalla en orden
     // descendente.
-    public static void ej15(Scanner leer) {
+    public static void ej15(Scanner read) {
         int[] vector = new int[100];
         for (int i = 0; i < vector.length; i++) {
             vector[i] = i + 1;
@@ -329,12 +330,12 @@ public class App {
     // N con valores aleatorios y le pida al usuario un numero a buscar
     // en el vector. El programa mostrará donde se encuentra el numero
     // y si se encuentra repetido.
-    public static void ej16(Scanner leer) {
+    public static void ej16(Scanner read) {
         int[] vector = new int[100];
         for (int i = 0; i < vector.length; i++) {
             vector[i] = (int) (Math.random() * 100);
         }
-        int num = leer.nextInt();
+        int num = read.nextInt();
         boolean encontrado = false;
         for (int i = 0; i < vector.length; i++) {
             if (vector[i] == num) {
@@ -349,7 +350,7 @@ public class App {
 
     // Recorrer un vector de N eneteros contabilizando cuantos numeros
     // de un digito hay, cuantos de dos digitos, etc. (hasta 5 digitos).
-    public static void ej17(Scanner leer) {
+    public static void ej17(Scanner read) {
         int[] vector = new int[100];
         for (int i = 0; i < vector.length; i++) {
             vector[i] = (int) (Math.random() * 100000);
@@ -435,7 +436,7 @@ public class App {
         }
     }
 
-    public static void ej20(Scanner leer) {
+    public static void ej20(Scanner read) {
         // constants for matrix
         final int MATRIX_SIZE = 3;
         final int MIN_NUMBER = 1;
@@ -446,7 +447,7 @@ public class App {
         boolean magico = true;
 
         // Fill matrix and calculate sums
-        fillMatrix(matrix, leer, MIN_NUMBER, MAX_NUMBER);
+        fillMatrix(matrix, read, MIN_NUMBER, MAX_NUMBER);
         calculateSums(matrix, sumas);
 
         // Check if all sums are equal
@@ -466,12 +467,12 @@ public class App {
         }
     }
 
-    public static void fillMatrix(int[][] matrix, Scanner leer, int minNumber, int maxNumber) {
+    public static void fillMatrix(int[][] matrix, Scanner read, int minNumber, int maxNumber) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 do {
                     System.out.println("Ingrese un número entre " + minNumber + " y " + maxNumber);
-                    matrix[i][j] = leer.nextInt();
+                    matrix[i][j] = read.nextInt();
                 } while (matrix[i][j] < minNumber || matrix[i][j] > maxNumber);
             }
         }
@@ -516,7 +517,64 @@ public class App {
         }
     }
 
-    
+    // Dadas dos matrices cuadradas de números enteros, la matriz M de 10x10 y la
+    // matriz P de 3x3, se solicita escribir un programa en el cual se compruebe si
+    // la matriz P está contenida dentro de la matriz M. Para ello se debe verificar
+    // si entre todas las submatrices de 3x3 que se pueden formar en la matriz M,
+    // desplazándose por filas o columnas, existe al menos una que coincida con la
+    // matriz P. En ese caso, el programa debe indicar la fila y la columna de la
+    // matriz M en la cual empieza el primer elemento de la submatriz p.
+
+    public static void ej21(Scanner read) {
+        final int MATRIX_M_SIZE = 10;
+        final int MATRIX_P_SIZE = 3;
+
+        int[][] matrixM = new int[MATRIX_M_SIZE][MATRIX_M_SIZE];
+        int[][] matrixP = new int[MATRIX_P_SIZE][MATRIX_P_SIZE];
+
+        fillMatrix(matrixM, read, 0, 9);
+        fillMatrix(matrixP, read, 0, 9);
+
+        boolean found = false;
+        int startRow = -1;
+        int startCol = -1;
+
+        for (int i = 0; i <= MATRIX_M_SIZE - MATRIX_P_SIZE; i++) {
+            for (int j = 0; j <= MATRIX_M_SIZE - MATRIX_P_SIZE; j++) {
+                if (isSubmatrixMatch(matrixM, matrixP, i, j)) {
+                    found = true;
+                    startRow = i;
+                    startCol = j;
+                    break;
+                }
+            }
+            if (found) {
+                break;
+            }
+        }
+
+        if (found) {
+            System.out.println("La matriz P está contenida en la matriz M.");
+            System.out.println("La submatriz P comienza en la fila " + startRow + " y columna " + startCol + ".");
+        } else {
+            System.out.println("La matriz P no está contenida en la matriz M.");
+        }
+    }
+
+    public static boolean isSubmatrixMatch(int[][] matrixM, int[][] matrixP, int startRow, int startCol) {
+        for (int i = 0; i < matrixP.length; i++) {
+            for (int j = 0; j < matrixP[i].length; j++) {
+                if (matrixM[startRow + i][startCol + j] != matrixP[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
+
+
 
 
 
