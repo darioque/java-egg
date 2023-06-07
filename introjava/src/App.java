@@ -26,8 +26,19 @@ public class App {
         // System.out.println();
         // ej19();
         // ej20(read);
-        ej21(read);
-
+        // ej21(read);
+        // extra_1(read);
+        // extra_2();
+        // extra_3(read);
+        // extra_5(read);
+        // extra_6(read);
+        // extra_7(read);
+        // extra_7B(read);
+        // extra_8(read);
+        // extra_9(read);
+        // extra_10(read);
+        // extra_11(read);
+        extra_12();
         read.close();
 
     }
@@ -397,13 +408,11 @@ public class App {
         return matrix;
     }
 
-
     public static void ej19() {
         System.out.println("Comprobar si una matriz es anti simetrica");
         int[][] matrix = new int[3][3];
 
         fillMatrix(matrix);
-        
 
         int[][] traspuesta = ej18(matrix);
 
@@ -411,9 +420,9 @@ public class App {
 
         // force matrix to be antisimetric to test
         // for (int i = 0; i < matrix.length; i++) {
-        //     for (int j = 0; j < matrix.length; j++) {
-        //         matrix[i][j] = traspuesta[i][j] * - 1;
-        //     }
+        // for (int j = 0; j < matrix.length; j++) {
+        // matrix[i][j] = traspuesta[i][j] * - 1;
+        // }
         // }
         showMatrix(matrix);
 
@@ -570,16 +579,350 @@ public class App {
             }
         }
         return true;
+
+    }
+
+    public static void extra_1(Scanner read) {
+        System.out.println("Ingrese minutos");
+        int minutes = read.nextInt();
+        int hours = minutes / 60;
+        int days = hours / 24;
+        hours = hours % 24;
+
+        System.out.println("Dias: " + days);
+        System.out.println("Horas: " + hours);
+
+    }
+
+    public static void extra_2() {
+        int A = 1;
+        int B = 2;
+        int C = 3;
+        int D = 4;
+        int aux = B;
+        B = C;
+        C = A;
+        A = D;
+        D = aux;
+
+        System.out.println("Los valores iniciales");
+        System.out.println("A: " + C);
+        System.out.println("B: " + D);
+        System.out.println("C: " + B);
+        System.out.println("D: " + A);
+
+        System.out.println("Los valores finales");
+        System.out.println("A: " + A);
+        System.out.println("B: " + B);
+        System.out.println("C: " + C);
+        System.out.println("D: " + D);
+
+    }
+
+    public static void extra_3(Scanner read) {
+        String letter = read.nextLine();
+
+        switch (letter.toLowerCase()) {
+            case "a":
+            case "e":
+            case "i":
+            case "o":
+            case "u":
+                System.out.println("Es vocal");
+                break;
+            default:
+                System.out.println("No es vocal");
+                break;
+        }
+
+    }
+
+    public static void extra_4(Scanner read) {
+        System.out.print("Enter a number from 1 to 10: ");
+        int number = read.nextInt();
+
+        if (number < 1 || number > 10) {
+            System.out.println("Invalid number. Please enter a number from 1 to 10.");
+            return;
+        }
+
+        String[] romanNumerals = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" };
+        String romanNumeral = romanNumerals[number - 1];
+
+        System.out.println("The Roman numeral representation of " + number + " is: " + romanNumeral);
+    }
+
+    public static void extra_5(Scanner read) {
+        System.out.println("Ingrese tipo de obra social (A, B, C)");
+        String healthcare = read.nextLine();
+        float cost = read.nextFloat();
+        float total = 0;
+
+        switch (healthcare.toLowerCase()) {
+            case "a":
+                total = cost * 0.5f;
+                break;
+            case "b":
+                total = cost * 0.65f;
+                break;
+            case "c":
+                total = cost;
+                break;
+            default:
+                System.out.println("Invalid healthcare");
+                break;
+        }
+        System.out.println("Total: " + total);
+    }
+
+    // Leer la altura de N personas y determinar el promedio de
+    // estaturas que se encuentran por debajo de 1.60 mts. y el
+    // promedio de estaturas en general.
+    public static void extra_6(Scanner read) {
+        System.out.println("Ingrese cantidad de personas");
+        int n = read.nextInt();
+        float[] heights = new float[n];
+        float total = 0;
+        float totalBelow = 0;
+        int below = 0;
+
+        for (int i = 0; i < heights.length; i++) {
+            System.out.println("Ingrese altura");
+            heights[i] = read.nextFloat();
+            total += heights[i];
+            if (heights[i] < 1.6) {
+                totalBelow += heights[i];
+                below++;
+            }
+        }
+        System.out.println("Promedio de estaturas en general: " + total / n);
+        System.out.println("Promedio de estaturas por debajo de 1.6: " + totalBelow / below);
+    }
+
+    // realice un programa que calcule y visualice el valor maximo,
+    // el valor minimo y el promedio de n numeros (n debe ser mayor que 0).
+    // El valor de n se solicitará al principio del programa y los numeros
+    // seran introducidos por el usuario. Realice dos versiones del programa,
+    // una usando el bucle "while" y otra con el bucle "do - while".
+
+    public static void extra_7(Scanner read) {
+        System.out.print("Ingrese la cantidad de números (n > 0): ");
+        int n = read.nextInt();
+
+        if (n <= 0) {
+            System.out.println("El valor de n debe ser mayor que 0.");
+            return;
+        }
+
+        int contador = 0;
+        int numero;
+        int maximo = Integer.MIN_VALUE;
+        int minimo = Integer.MAX_VALUE;
+        int suma = 0;
+
+        System.out.println("Ingrese los números:");
+        while (contador < n) {
+            numero = read.nextInt();
+            maximo = Math.max(maximo, numero);
+            minimo = Math.min(minimo, numero);
+            suma += numero;
+            contador++;
+        }
+
+        double promedio = (double) suma / n;
+
+        System.out.println("Valor máximo: " + maximo);
+        System.out.println("Valor mínimo: " + minimo);
+        System.out.println("Promedio: " + promedio);
+
+    }
+
+    public static void extra_7B(Scanner read) {
+        System.out.print("Ingrese la cantidad de números (n > 0): ");
+        int n = read.nextInt();
+
+        if (n <= 0) {
+            System.out.println("El valor de n debe ser mayor que 0.");
+            return;
+        }
+
+        int contador = 0;
+        int numero;
+        int maximo = Integer.MIN_VALUE;
+        int minimo = Integer.MAX_VALUE;
+        int suma = 0;
+
+        System.out.println("Ingrese los números:");
+        read.nextLine();
+        do {
+            numero = read.nextInt();
+            maximo = Math.max(maximo, numero);
+            minimo = Math.min(minimo, numero);
+            suma += numero;
+            contador++;
+        } while (contador < n);
+
+        double promedio = (double) suma / n;
+
+        System.out.println("Valor máximo: " + maximo);
+        System.out.println("Valor mínimo: " + minimo);
+        System.out.println("Promedio: " + promedio);
+
+    }
+
+    // escriba un programa que lea numeros enteros. Si el numero es multiplo
+    // de cinco debe detener la lectura y mostrar la cantidad de numeros leidos,
+    // la cantidad de numeros pares y la cantidad de numeros impares. Los numeros
+    // negativos no deben sumarse. Recordar el uso de la sentencia break
+
+    public static void extra_8(Scanner read) {
+        int numero;
+        int pares = 0;
+        int impares = 0;
+        int total = 0;
+
+        while (true) {
+            System.out.print("Ingrese un número: ");
+            numero = read.nextInt();
+
+            if (numero % 5 == 0) {
+                break;
+            }
+
+            if (numero < 0) {
+                continue;
+            }
+
+            if (numero % 2 == 0) {
+                pares++;
+            } else {
+                impares++;
+            }
+
+            total++;
+        }
+
+        System.out.println("Cantidad de números leídos: " + total);
+        System.out.println("Cantidad de números pares: " + pares);
+        System.out.println("Cantidad de números impares: " + impares);
     }
 
 
+    // Simular la division usando solamente restas. Dados dos numeros enteros
+    // mayores que uno, realizar un algoritmo que calcule el cociente y el resto
+    // usando solo restas. Metodo: Restar el dividendo del divisor hasta obtener
+    // un valor menor que el divisor, este valor es el resto, y el numero de
+    // restas realizadas es el cociente. Por ejemplo: 50 / 13:
+    // 50 - 13 = 37 una resta realizada
+    // 37 - 13 = 24 dos restas realizadas
+    // 24 - 13 = 11 tres restas realizadas
+    // 11 - 13 = -2 fin de las restas, el cociente es 3 y el resto 11
+
+    public static void extra_9(Scanner read) {
+        System.out.print("Ingrese el dividendo: ");
+        int dividendo = read.nextInt();
+
+        System.out.print("Ingrese el divisor: ");
+        int divisor = read.nextInt();
+
+        if (divisor <= 1) {
+            System.out.println("El divisor debe ser mayor que 1.");
+            return;
+        }
+
+        int cociente = 0;
+        int resto = dividendo;
+
+        while (resto >= divisor) {
+            resto -= divisor;
+            cociente++;
+        }
+
+        System.out.println("Cociente: " + cociente);
+        System.out.println("Resto: " + resto);
+    }
 
 
+    // realice un programa para que el usuario adivine el resultado de
+    // una multiplicacion entre dos numeros generados aleatoriamente entre 0 y 10.
+    // El programa debe indicar al usuario si su respuesta es o no correcta.
+    // En caso que la respuesta sea incorrecta se debe permitir al usuario
+    // ingresar su respuesta nuevamente. Para realizar este ejercicio investigue
+    // como utilizar la funcion Math.random() de Java.
 
+    public static void extra_10(Scanner read) {
+        int numero1 = (int) (Math.random() * 11);
+        int numero2 = (int) (Math.random() * 11);
+        int resultado = numero1 * numero2;
+        int respuesta;
 
+        do {
+            System.out.print("¿Cuánto es " + numero1 + " * " + numero2 + "? ");
+            respuesta = read.nextInt();
 
+            if (respuesta != resultado) {
+                System.out.println("Respuesta incorrecta.");
+            }
+        } while (respuesta != resultado);
 
+        System.out.println("Respuesta correcta.");
+    }
 
+    // escribir un programa que lea un numero entero y devuelva
+    // el numero de cifras que componen ese numero. Por ejemplo,
+    // si introducimos el numero 1250, el programa debera devolver
+    // que tiene 4 cifras. Calcular la cantidad de digitos matematicamente
+    // utilizando el operador de division. Nota: recordar que las
 
+    public static void extra_11(Scanner read) {
+        System.out.print("Ingrese un número entero: ");
+        int numero = read.nextInt();
 
+        if (numero < 0) {
+            numero *= -1;
+        }
+
+        int digitos = 0;
+
+        do {
+            numero /= 10;
+            digitos++;
+        } while (numero > 0);
+
+        System.out.println("El número tiene " + digitos + " dígitos.");
+    }
+
+    // necesitamos mostrar un contador con 3 digitos (X-X-X),
+    // que muestre los numeros del 0-0-0 al 9-9-9, con la particularidad
+    // que cada vez que que aparezca un 3 lo sustituya por una E.
+    // nota: investiga funcion equals() y como convetir numeros a String.
+
+    public static void extra_12() {
+        for (int i = 0; i <= 9; i++) {
+            String iString = String.valueOf(i);
+            if (i == 3) {
+                iString = "E";
+            }
+
+            for (int j = 0; j <= 9; j++) {
+                String jString = String.valueOf(j);
+
+                if (j == 3) {
+                    jString = "E";
+                }
+
+                for (int k = 0; k <= 9; k++) {
+                    String kString = String.valueOf(k);
+
+                    if (k == 3) {
+                        kString = "E";
+                    }
+
+                    System.out.println(iString + "-" + jString + "-" + kString);
+                }
+            }
+        }
+    }
+
+    
 }
