@@ -1,4 +1,6 @@
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -38,7 +40,8 @@ public class App {
         // extra_9(read);
         // extra_10(read);
         // extra_11(read);
-        extra_12();
+        // extra_12();
+        extra_23(read);
         read.close();
 
     }
@@ -923,6 +926,266 @@ public class App {
             }
         }
     }
+
+    // crear un programa que dibuje una escalera de numeros, donde cada linea
+    // de numeros comience en uno y termine en el numero de la linea. Solicitar
+    // la altura de la escalera al usuario al comenzar. Ejemplo: si se ingresa
+    // el numero 3:
+    // 1
+    // 12
+    // 123
+
+    public static void extra_13(Scanner read) {
+        System.out.print("Ingrese la altura de la escalera: ");
+        int altura = read.nextInt();
+
+        for (int i = 1; i <= altura; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j);
+            }
+            System.out.println();
+        }
+    }
+
+    // se dispone de un conjunto de N familias, cada una de las cuelas tiene una M cantidad
+    // de hijos. Escriba un programa que pida la cantidad de familias y para cada familia
+    // la cantidad de hijos para averiguar la media de edad de los hijos de todas las familias.
+
+    public static void extra_14(Scanner read) {
+        System.out.print("Ingrese la cantidad de familias: ");
+        int cantidadFamilias = read.nextInt();
+
+        if (cantidadFamilias <= 0) {
+            System.out.println("La cantidad de familias debe ser mayor que 0.");
+            return;
+        }
+
+        int totalHijos = 0;
+        int totalEdad = 0;
+
+        for (int i = 1; i <= cantidadFamilias; i++) {
+            System.out.print("Ingrese la cantidad de hijos de la familia " + i + ": ");
+            int cantidadHijos = read.nextInt();
+
+            if (cantidadHijos <= 0) {
+                System.out.println("La cantidad de hijos debe ser mayor que 0.");
+                return;
+            }
+
+            for (int j = 1; j <= cantidadHijos; j++) {
+                System.out.print("Ingrese la edad del hijo " + j + ": ");
+                int edad = read.nextInt();
+
+                if (edad <= 0) {
+                    System.out.println("La edad debe ser mayor que 0.");
+                    return;
+                }
+
+                totalHijos++;
+                totalEdad += edad;
+            }
+        }
+
+        double promedio = (double) totalEdad / totalHijos;
+
+        System.out.println("El promedio de edad de los hijos de todas las familias es: " + promedio);
+    }
+
+
+    // crea una aplicacion que le pida dos numeros al usuario y este
+    // pueda elegir entre sumar, restar, multiplicar y dividir. La aplicacion
+    // debe tener una funcion para cada operacion matematica y deben devolver
+    // sus resultados para imprimirlos en el main.
+
+    public static void extra_15(Scanner read) {
+        System.out.print("Ingrese el primer número: ");
+        int numero1 = read.nextInt();
+
+        System.out.print("Ingrese el segundo número: ");
+        int numero2 = read.nextInt();
+
+        System.out.println("¿Qué operación desea realizar?");
+        System.out.println("1. Sumar");
+        System.out.println("2. Restar");
+        System.out.println("3. Multiplicar");
+        System.out.println("4. Dividir");
+
+        int opcion = read.nextInt();
+
+        switch (opcion) {
+            case 1:
+                System.out.println("El resultado de la suma es: " + sumar(numero1, numero2));
+                break;
+            case 2:
+                System.out.println("El resultado de la resta es: " + restar(numero1, numero2));
+                break;
+            case 3:
+                System.out.println("El resultado de la multiplicación es: " + multiplicar(numero1, numero2));
+                break;
+            case 4:
+                System.out.println("El resultado de la división es: " + dividir(numero1, numero2));
+                break;
+            default:
+                System.out.println("Opción inválida.");
+                break;
+        }
+
+    }
+
+    public static int sumar(int numero1, int numero2) {
+        return numero1 + numero2;
+    }
+
+    public static int restar(int numero1, int numero2) {
+        return numero1 - numero2;
+    }
+
+    public static int multiplicar(int numero1, int numero2) {
+        return numero1 * numero2;
+    }
+
+    public static double dividir(int numero1, int numero2) {
+        return (double) numero1 / numero2;
+    }
+
+    // Diseñe una funcion que pida el nombre y la edad de N personas
+    // e imprima los datos de las personas ingresadas por teclado e indique
+    // si son mayores o menores de edad. Despues de cada persona, el programa
+    // debe preguntarle al usuario si quiere seguir mostrando personas y frenar
+    // cuando el usuario ingrese la palabra "no".
+
+    public static void extra_16(Scanner read) {
+        boolean continuar = true;
+
+        while (continuar) {
+            System.out.print("Ingrese el nombre de la persona: ");
+            String nombre = read.nextLine();
+
+            System.out.print("Ingrese la edad de la persona: ");
+            int edad = read.nextInt();
+            read.nextLine();
+
+            System.out.println("Nombre: " + nombre);
+            System.out.println("Edad: " + edad);
+
+            if (edad >= 18) {
+                System.out.println("Es mayor de edad.");
+            } else {
+                System.out.println("Es menor de edad.");
+            }
+
+            System.out.print("¿Desea seguir mostrando personas? (si/no) ");
+            String respuesta = read.nextLine();
+
+            if (respuesta.equals("no")) {
+                continuar = false;
+            }
+        }
+    }
+
+    // Realizar un programa que complete un vector con los N primeros
+    // numeros de la sucesion de fibonacci usando recursion
+
+    public static void extra_17(Scanner read) {
+        System.out.print("Ingrese la cantidad de números de la sucesión de Fibonacci: ");
+        int cantidad = read.nextInt();
+
+        if (cantidad <= 0) {
+            System.out.println("La cantidad debe ser mayor que 0.");
+            return;
+        }
+
+        int[] sucesion = new int[cantidad];
+
+        for (int i = 0; i < cantidad; i++) {
+            sucesion[i] = fibonacci(i);
+        }
+
+        System.out.println("Los primeros " + cantidad + " números de la sucesión de Fibonacci son:");
+        for (int i = 0; i < cantidad; i++) {
+            System.out.print(sucesion[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static int fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        }
+
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+    public static void extra_23(Scanner read) {
+        int WORD_SOUP_SIZE = 20;
+        String[][] wordSoup = new String[WORD_SOUP_SIZE][WORD_SOUP_SIZE];
+        Set<Integer> occupiedRows = new HashSet<>();
+        int[] columns = new int[5];
+        String[] word = new String[5];
+        int wordPosition = 0;
+
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Ingrese una palabra");
+            word[i] = read.nextLine();
+
+            while (word[i].length() > 5 || word[i].length() < 3) {
+                word[i] = read.nextLine();
+            }
+            int wordPositionRow;
+
+            do {
+
+                wordPositionRow = (int) (Math.random() * WORD_SOUP_SIZE);
+                
+            } while (occupiedRows.contains(wordPositionRow));
+
+            occupiedRows.add(wordPositionRow);
+            
+            int wordPositionColumn = (int) (Math.random() * (WORD_SOUP_SIZE - word[i].length() - 1));
+            columns[i] = wordPositionColumn;
+        }
+
+        for (int i = 0; i < wordSoup.length; i++) {
+            
+            int letterPosition = 0;
+            for (int j = 0; j < wordSoup.length; j++) {
+                if (occupiedRows.contains(i)) {
+                    if (j >= columns[wordPosition] && letterPosition < word[wordPosition].length()) {
+                        String letter = word[wordPosition].substring(letterPosition, letterPosition+1);
+                        wordSoup[i][j] = letter;
+                        letterPosition += 1;
+                    }
+                }
+                if (!occupiedRows.contains(i) || j < columns[wordPosition] || j > (columns[wordPosition] + word[wordPosition].length() - 1)) {
+                    int random = (int) (Math.random() * 10);
+                    wordSoup[i][j] = Integer.toString(random);
+                }
+            }
+
+            if (occupiedRows.contains(i)) {
+                wordPosition += 1;
+            }
+        }
+
+        showStringMatrix(wordSoup);
+    }
+
+    public static void showStringMatrix(String[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+
+
+    
+
+
+
+
 
     
 }
