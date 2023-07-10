@@ -1,6 +1,7 @@
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -1121,15 +1122,16 @@ public class App {
         String[][] wordSoup = new String[WORD_SOUP_SIZE][WORD_SOUP_SIZE];
         Set<Integer> occupiedRows = new HashSet<>();
         int[] columns = new int[5];
-        String[] word = new String[5];
+        String[] words = new String[5];
         int wordPosition = 0;
 
         for (int i = 0; i < 5; i++) {
             System.out.println("Ingrese una palabra");
-            word[i] = read.nextLine();
+            words[i] = read.nextLine();
 
-            while (word[i].length() > 5 || word[i].length() < 3) {
-                word[i] = read.nextLine();
+            while (words[i].length() > 5 || words[i].length() < 3) {;
+                System.out.println("Error: Ingrese una palabra de entre 3 y 5 caracteres");
+                words[i] = read.nextLine();
             }
             int wordPositionRow;
 
@@ -1141,7 +1143,7 @@ public class App {
 
             occupiedRows.add(wordPositionRow);
             
-            int wordPositionColumn = (int) (Math.random() * (WORD_SOUP_SIZE - word[i].length() - 1));
+            int wordPositionColumn = (int) (Math.random() * (WORD_SOUP_SIZE - words[i].length() - 1));
             columns[i] = wordPositionColumn;
         }
 
@@ -1150,13 +1152,13 @@ public class App {
             int letterPosition = 0;
             for (int j = 0; j < wordSoup.length; j++) {
                 if (occupiedRows.contains(i)) {
-                    if (j >= columns[wordPosition] && letterPosition < word[wordPosition].length()) {
-                        String letter = word[wordPosition].substring(letterPosition, letterPosition+1);
+                    if (j >= columns[wordPosition] && letterPosition < words[wordPosition].length()) {
+                        String letter = words[wordPosition].substring(letterPosition, letterPosition+1);
                         wordSoup[i][j] = letter;
                         letterPosition += 1;
                     }
                 }
-                if (!occupiedRows.contains(i) || j < columns[wordPosition] || j > (columns[wordPosition] + word[wordPosition].length() - 1)) {
+                if (!occupiedRows.contains(i) || j < columns[wordPosition] || j > (columns[wordPosition] + words[wordPosition].length() - 1)) {
                     int random = (int) (Math.random() * 10);
                     wordSoup[i][j] = Integer.toString(random);
                 }
@@ -1171,9 +1173,16 @@ public class App {
     }
 
     public static void showStringMatrix(String[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                System.out.print(matrix[i][j] + " ");
+        Pattern alphabeticPattern = Pattern.compile("[a-zA-Z]+");
+
+        for (String[] row : matrix) {
+            for (String element : row) {
+                if (element != null && alphabeticPattern.matcher(element).matches()) {
+                    // Add ANSI escape codes to change the text color to green
+                    System.out.print("\u001B[32m" + element + "\u001B[0m ");
+                } else {
+                    System.out.print(element + " ");
+                }
             }
             System.out.println();
         }
