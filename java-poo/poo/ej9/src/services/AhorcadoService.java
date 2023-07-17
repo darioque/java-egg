@@ -58,32 +58,38 @@ public class AhorcadoService {
             String letra = read.nextLine();
             encontradas(letra);
             intentos();
+            System.out.println("Letras encontradas: " + ahorcado.getCantLetras());
+            System.out.println("Le faltan " + (ahorcado.getPalabra().length - ahorcado.getCantLetras()) + " letras");
+
+        }
+
+        if (ahorcado.getCantLetras() >= ahorcado.getPalabra().length) {
+            System.out.println("Ganaste!");
+        } else {
+            System.out.println("Perdiste!");
         }
 
         read.close();
     }
 
-    public Boolean encontradas(String letra) {
-        Boolean encontrada = false;
+    public void encontradas(String letra) {
+        int encontrada = 0;
 
         for (int i = 0; i < ahorcado.getPalabra().length; i++) {
-            if (ahorcado.getPalabra()[i].equals(letra)) { // Use equals() for string comparison
-                encontrada = true;
+            if (ahorcado.getPalabra()[i].equalsIgnoreCase(letra)) {
+                encontrada++;
             }
         }
 
-        if (encontrada) {
-            ahorcado.setCantLetras(ahorcado.getCantLetras() + 1);
+        if (encontrada > 0) {
+            ahorcado.setCantLetras(ahorcado.getCantLetras() + encontrada);
             System.out.println("La letra se encuentra en la palabra");
         } else {
             ahorcado.setIntentos(ahorcado.getIntentos() - 1);
             System.out.println("La letra no se encuentra en la palabra");
         }
 
-        System.out.println("Letras encontradas: " + ahorcado.getCantLetras());
-        System.out.println("Le faltan " + (ahorcado.getPalabra().length - ahorcado.getCantLetras()) + " letras");
 
-        return encontrada;
     }
 
 
