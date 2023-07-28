@@ -7,6 +7,7 @@ public class Alumno {
     ArrayList<Integer> notas = new ArrayList<Integer>();
 
     public Alumno() {
+
     }
 
     public Alumno(String name, ArrayList<Integer> notas) {
@@ -21,13 +22,13 @@ public class Alumno {
     public void setName(String name) {
         this.name = name;
     }
+
     public ArrayList<Integer> getNotas() {
         return notas;
     }
+
     public void setNotas(ArrayList<Integer> notas) {
         this.notas = notas;
     }
 
-    
-    
 }

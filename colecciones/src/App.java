@@ -1,15 +1,20 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 
 import entities.Alumno;
 import services.AlumnoService;
+import services.PeliculaService;
 
 public class App {
     public static void main(String[] args) throws Exception {
 
         // ej1y2();
-        ej3();
+        // ej3();
+        ej4();
+        // ej5();
+        // ej6();
 
     }
 
@@ -64,5 +69,57 @@ public class App {
                 System.out.println("La nota final de " + nombre + " es " + sa.notaFinal(alumno));
             }
         }
+    }
+
+    public static void ej4() {
+        PeliculaService ps = new PeliculaService();
+        ps.crearPelicula();
+        ps.mostrarPeliculas();
+        ps.mostrarPeliculas(1.0);
+        ps.ordenarPeliculasMayorAMenor();
+        ps.ordenarPeliculasMenorAMayor();
+        ps.ordenarPeliculasPorTitulo();
+        ps.ordenarPeliculasPorDirector();
+    }
+
+    public static void ej5() {
+        HashSet<String> paises = new HashSet<String>();
+        while (true) {
+            System.out.println("Ingrese un país");
+            String pais = System.console().readLine();
+            paises.add(pais);
+            System.out.println("Desea ingresar otro país? (s/n)");
+            String respuesta = System.console().readLine();
+            if (respuesta.equals("n")) {
+                break;
+            }
+        }
+
+        System.out.println(paises);
+
+        // ordenar el conjunto alfabeticamente y mostrarlo
+        ArrayList<String> paisesOrdenados = new ArrayList<String>(paises);
+        Collections.sort(paisesOrdenados);
+        System.out.println(paisesOrdenados);
+
+        System.out.println("Ingrese un país");
+        String pais = System.console().readLine();
+        Iterator<String> it = paises.iterator();
+
+        int tamano = paises.size();
+
+        while (it.hasNext()) {
+            if (it.next().equals(pais)) {
+                System.out.println("El país " + pais + " se encuentra en el conjunto y será eliminado");
+                it.remove();
+                break;
+            }
+        }
+
+        if (tamano == paises.size()) {
+            System.out.println("El país " + pais + " no se encuentra en el conjunto");
+        }
+
+        System.out.println(paises);
     }
 }
