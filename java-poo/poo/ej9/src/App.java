@@ -19,7 +19,7 @@ public class App {
         // extra_3();
         // extra_4();
         // extra_5();
-        grupal();
+        // grupal();
     }
 
     public static void ej9() {
@@ -78,6 +78,7 @@ public class App {
     public static void grupal() {
         // crear cinco clientes con datos ficticios
         ClienteService cs = new ClienteService();
+    
         Cliente c1 = cs.crearCliente(0, null, 0, 0, 0, null);
         Cliente c2 = cs.crearCliente(0, null, 0, 0, 0, null);
         Cliente c3 = cs.crearCliente(0, null, 0, 0, 0, null);

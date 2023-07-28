@@ -37,5 +37,6 @@ public class RutinaService {
         for (Rutina rutina : rutinas) {
             System.out.println(rutina);
         }
+        
     }
 }
