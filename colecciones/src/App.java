@@ -6,15 +6,16 @@ import java.util.Iterator;
 import entities.Alumno;
 import services.AlumnoService;
 import services.PeliculaService;
+import services.ProductoService;
 
 public class App {
     public static void main(String[] args) throws Exception {
 
         // ej1y2();
         // ej3();
-        ej4();
+        // ej4();
         // ej5();
-        // ej6();
+        ej6();
 
     }
 
@@ -84,6 +85,7 @@ public class App {
 
     public static void ej5() {
         HashSet<String> paises = new HashSet<String>();
+
         while (true) {
             System.out.println("Ingrese un país");
             String pais = System.console().readLine();
@@ -99,11 +101,14 @@ public class App {
 
         // ordenar el conjunto alfabeticamente y mostrarlo
         ArrayList<String> paisesOrdenados = new ArrayList<String>(paises);
+
         Collections.sort(paisesOrdenados);
+        
         System.out.println(paisesOrdenados);
 
         System.out.println("Ingrese un país");
         String pais = System.console().readLine();
+        
         Iterator<String> it = paises.iterator();
 
         int tamano = paises.size();
@@ -120,6 +125,12 @@ public class App {
             System.out.println("El país " + pais + " no se encuentra en el conjunto");
         }
 
-        System.out.println(paises);
     }
+
+    public static void ej6() {
+        ProductoService ps = new ProductoService();
+
+        ps.menu();
+    }
+
 }
