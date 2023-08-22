@@ -56,7 +56,6 @@ public class Deck {
         if (discardedCards.isEmpty()) {
             System.out.println("No cards have been discarded yet.");
         } else {
-            System.out.println("Discarded Cards:");
             for (Card card : discardedCards) {
                 System.out.println(card);
             }
@@ -85,7 +84,6 @@ public class Deck {
         if (cards.isEmpty()) {
             System.out.println("No cards are in the deck");
         } else {
-            System.out.println("Deck:");
             for (Card card : cards) {
                 System.out.println(card);
             }

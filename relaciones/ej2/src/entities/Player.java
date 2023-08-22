@@ -41,7 +41,7 @@ public class Player {
     }
 
     public Boolean shoot(WaterGun wg) {
-
+        
         Boolean wasShot = wg.isWet();
         this.setIsWet(wasShot);
         wg.nextChamber();
