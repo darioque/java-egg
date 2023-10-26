@@ -14,7 +14,7 @@ public class AuthorService {
         }
 
         if (dao.findAuthorByName(name) != null) {
-            return dao.findAuthorByName(name);
+            throw new IllegalArgumentException("Author already exists");
         }
 
         Author author = new Author();
@@ -33,6 +33,10 @@ public class AuthorService {
             throw new IllegalArgumentException("Name cannot be null or empty");
         }
 
+        if (dao.findAuthorByName(name) == null) {
+            throw new IllegalArgumentException("Author doesn't exist");
+        }
+
         Author author = new Author();
         author.setId(id);
         author.setName(name);
@@ -45,8 +49,11 @@ public class AuthorService {
             throw new IllegalArgumentException("Id cannot be null");
         }
 
-        Author author = dao.find(Author.class, id);
-        author.setId(id);
+        Author author = dao.findById(Author.class, id);
+        if (author == null) {
+            throw new IllegalArgumentException("Author does not exist");
+        }
+
         author.setRegistered(false);
 
         dao.delete(author);
@@ -57,7 +64,7 @@ public class AuthorService {
             throw new IllegalArgumentException("Id cannot be null");
         }
 
-        Author author = dao.find(Author.class, id);
+        Author author = dao.findById(Author.class, id);
 
         return author;
     }
@@ -73,7 +80,7 @@ public class AuthorService {
     }
 
     public void showAuthors() throws Exception {
-        List<Author> authors = dao.showAuthors();
+        List<Author> authors = dao.findAll(Author.class);
 
         for (Author author : authors) {
             System.out.println(author.getName());

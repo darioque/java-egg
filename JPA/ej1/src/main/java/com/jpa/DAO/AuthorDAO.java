@@ -1,26 +1,8 @@
 package com.jpa.DAO;
 
-import java.util.List;
-
 import com.jpa.entities.Author;
 
-import jakarta.persistence.TypedQuery;
-
-
 public final class AuthorDAO extends DAO<Author> {
-
-    public List<Author> showAuthors() throws Exception {
-
-        try {
-            TypedQuery<Author> query = em.createQuery("SELECT a FROM Author a", Author.class);
-            List<Author> authors = query.getResultList();
-            System.out.println("Authors: " + authors);
-            return authors;
-        } catch (Exception e) {
-            throw new Exception();
-        }
-
-    }
 
     public Author findAuthorByName(String name) throws Exception {
         try {

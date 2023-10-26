@@ -8,10 +8,11 @@ import com.jpa.entities.Book;
 import com.jpa.entities.Publisher;
 
 public class BookService {
-    
+
     private BookDAO dao = new BookDAO();
 
-    public Book saveBook(Long isbn, String title, Integer year, Integer copy, Author author, Publisher publisher) throws Exception {
+    public Book saveBook(Long isbn, String title, Integer year, Integer copy, Author author, Publisher publisher)
+            throws Exception {
         if (isbn == null) {
             throw new IllegalArgumentException("Isbn cannot be null");
         }
@@ -36,10 +37,9 @@ public class BookService {
             throw new IllegalArgumentException("Publisher cannot be null");
         }
 
-        if (dao.findBookByIsbn(isbn) != null) {
-            return dao.findBookByIsbn(isbn);
+        if (dao.findById(Book.class, isbn) != null) {
+            throw new IllegalArgumentException("Book already exists");
         }
-
 
         Book book = new Book();
         book.setIsbn(isbn);
@@ -55,7 +55,8 @@ public class BookService {
         return dao.create(book);
     }
 
-    public void modifyBook(Long isbn, String title, Integer year, Integer copy, Author author, Publisher publisher) throws Exception {
+    public void modifyBook(Long isbn, String title, Integer year, Integer copy, Author author, Publisher publisher)
+            throws Exception {
         if (isbn == null) {
             throw new IllegalArgumentException("Isbn cannot be null");
         }
@@ -80,6 +81,9 @@ public class BookService {
             throw new IllegalArgumentException("Publisher cannot be null");
         }
 
+        if (dao.findById(Book.class, isbn) == null) {
+            throw new IllegalArgumentException("Book does not exist");
+        }
 
         Book book = new Book();
         book.setIsbn(isbn);
@@ -100,15 +104,19 @@ public class BookService {
             throw new IllegalArgumentException("Isbn cannot be null");
         }
 
-        Book book = dao.findBookByIsbn(isbn);
+        Book book = dao.findById(Book.class, isbn);
+
+        if (book == null) {
+            throw new IllegalArgumentException("Book does not exist");
+        }
 
         book.setRegistered(false);
 
         dao.delete(book);
     }
 
-        public void showBooks() throws Exception {
-        List<Book> books = dao.showBooks();
+    public void showBooks() throws Exception {
+        List<Book> books = dao.findAll(Book.class);
 
         for (Book book : books) {
             System.out.println(book.getTitle());
@@ -121,7 +129,7 @@ public class BookService {
             throw new IllegalArgumentException("Isbn cannot be null");
         }
 
-        return dao.findBookByIsbn(isbn);
+        return dao.findById(Book.class, isbn);
     }
 
     public Book findBookByTitle(String title) throws Exception {
@@ -162,5 +170,4 @@ public class BookService {
         return dao.findBooksByPublisher(publisher);
     }
 
-    
 }

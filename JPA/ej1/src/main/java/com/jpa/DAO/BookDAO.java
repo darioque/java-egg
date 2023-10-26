@@ -14,33 +14,10 @@ public final class BookDAO extends DAO<Book> {
         super();
     }
 
-
-    public List<Book> showBooks() throws Exception {
-
-        try {
-            TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b", Book.class);
-            List<Book> books = query.getResultList();
-            return books;
-        } catch (Exception e) {
-            throw new Exception();
-        }
-
-    }
-
-    public Book findBookByIsbn(Long isbn) throws Exception {
-        try {
-            Book book = em.find(Book.class, isbn);
-            return book;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
     public Book findBookByTitle(String title) throws Exception {
         try {
-            Book book = (Book) em.createQuery("SELECT * FROM Book b where title = :title")
+            Book book = em.createQuery("SELECT b FROM Book b where title = :title", Book.class)
                     .setParameter("title", title).getSingleResult();
-
             return book;
         } catch (Exception e) {
             return null;
@@ -49,7 +26,7 @@ public final class BookDAO extends DAO<Book> {
 
     public List<Book> findBooksByYear(Integer year) throws Exception {
         try {
-            TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b where year = :year", Book.class).setParameter("year", year);
+            TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b where year = :year", Book.class);
             List<Book> books = query.setParameter("year", year).getResultList();
 
             return books;
@@ -61,18 +38,21 @@ public final class BookDAO extends DAO<Book> {
     public List<Book> findBooksByAuthor(Author author) throws Exception {
         try {
             Integer authorId = author.getId();
-            TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b where author_id = :author_id", Book.class).setParameter("author_id", authorId);
-            List<Book> books = query.setParameter("author_id", authorId).getResultList();
+            TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b WHERE b.author.id = :authorId", Book.class);
+            query.setParameter("authorId", authorId);
+            List<Book> books = query.getResultList();
             return books;
         } catch (Exception e) {
-            throw new Exception();
+            throw new Exception("Error while finding books by author: " + e.getMessage());
         }
     }
 
     public List<Book> findBooksByPublisher(Publisher publisher) throws Exception {
         try {
             Integer publisherId = publisher.getId();
-            TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b where publisher_id = :publisher_id", Book.class).setParameter("publisher_id", publisherId);
+            TypedQuery<Book> query = em
+                    .createQuery("SELECT b FROM Book b where b.publisher.id = :publisher_id", Book.class)
+                    .setParameter("publisher_id", publisherId);
             List<Book> books = query.setParameter("publisher_id", publisherId).getResultList();
             return books;
         } catch (Exception e) {

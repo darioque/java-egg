@@ -1,26 +1,11 @@
 package com.jpa.DAO;
 
-import java.util.List;
-
 import com.jpa.entities.Publisher;
-
-import jakarta.persistence.TypedQuery;
 
 public final class PublisherDAO extends DAO<Publisher> {
 
     public PublisherDAO() {
         super();
-    }
-
-
-    public List<Publisher> showPublishers() throws Exception {
-        try {
-            TypedQuery<Publisher> query = em.createQuery("SELECT p FROM Publisher p", Publisher.class);
-            List<Publisher> publishers = query.getResultList();
-            return publishers;
-        } catch (Exception e) {
-            throw new Exception();
-        }
     }
 
     public Publisher findPublisherById(Integer id) throws Exception {

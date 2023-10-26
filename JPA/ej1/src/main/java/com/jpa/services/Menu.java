@@ -1,7 +1,5 @@
 package com.jpa.services;
 
-import org.checkerframework.checker.units.qual.A;
-
 import com.jpa.entities.Author;
 import com.jpa.entities.Publisher;
 
@@ -30,9 +28,9 @@ public class Menu {
             System.out.println("12. Buscar editorial por id");
             System.out.println("13. Buscar libro por isbn");
             System.out.println("14. Buscar libro por titulo");
-            System.out.println("15. Buscar libro por autor");
-            System.out.println("16. Buscar libro por editorial");
-            System.out.println("17. Buscar libro por año");
+            System.out.println("15. Buscar libros por autor");
+            System.out.println("16. Buscar libros por editorial");
+            System.out.println("17. Buscar libros por año");
             System.out.println("18. Buscar autor por nombre");
             System.out.println("19. Salir");
             System.out.println("Introduce una opción: ");
@@ -69,12 +67,12 @@ public class Menu {
                     int copies = Integer.parseInt(System.console().readLine());
                     System.out.println("Introduce el nombre del autor del libro: ");
                     String nameAuthor = System.console().readLine();
-                    Author author = authorService.saveAuthor(nameAuthor);
+                    Author bookAuthor = authorService.findAuthorByName(nameAuthor);
                     System.out.println("Introduce el nombre de la editorial del libro: ");
                     namePublisher = System.console().readLine();
-                    Publisher publisher = publisherService.savePublisher(namePublisher);
+                    Publisher bookPublisher = publisherService.findPublisherByName(namePublisher);
                     try {
-                        bookService.saveBook(isbn, title, year, copies, author, publisher);
+                        bookService.saveBook(isbn, title, year, copies, bookAuthor, bookPublisher);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -93,7 +91,7 @@ public class Menu {
                     System.out.println("Introduce el nombre de la editorial del libro: ");
                     String namePublisher2 = System.console().readLine();
                     try {
-                        bookService.modifyBook(isbn2, title2, year2, copies2, authorService.saveAuthor(nameAuthor2), publisherService.savePublisher(namePublisher2));
+                        bookService.modifyBook(isbn2, title2, year2, copies2, authorService.findAuthorByName(nameAuthor2), publisherService.findPublisherByName(namePublisher2));
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -162,7 +160,7 @@ public class Menu {
                     System.out.println("Introduce el id de la editorial: ");
                     Integer publisherId2 = Integer.parseInt(System.console().readLine());
                     try {
-                        publisherService.findPublisherById(publisherId2);
+                        System.out.println(publisherService.findPublisherById(publisherId2).getName()); 
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -171,7 +169,7 @@ public class Menu {
                     System.out.println("Introduce el isbn del libro: ");
                     long isbn4 = Long.parseLong(System.console().readLine());
                     try {
-                        bookService.findBookByIsbn(isbn4);
+                        System.out.println(bookService.findBookByIsbn(isbn4).getTitle());
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -180,7 +178,7 @@ public class Menu {
                     System.out.println("Introduce el título del libro: ");
                     String title3 = System.console().readLine();
                     try {
-                        bookService.findBookByTitle(title3);
+                        System.out.println(bookService.findBookByTitle(title3));
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -189,7 +187,7 @@ public class Menu {
                     System.out.println("Introduce el nombre del autor: ");
                     String nameAuthor4 = System.console().readLine();
                     try {
-                        bookService.findBooksByAuthor(nameAuthor4);
+                        System.out.println(bookService.findBooksByAuthor(nameAuthor4));
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -198,7 +196,7 @@ public class Menu {
                     System.out.println("Introduce el nombre de la editorial: ");
                     String namePublisher4 = System.console().readLine();
                     try {
-                        bookService.findBooksByPublisher(namePublisher4);
+                        System.out.println(bookService.findBooksByPublisher(namePublisher4));
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -207,7 +205,7 @@ public class Menu {
                     System.out.println("Introduce el año del libro: ");
                     int year3 = Integer.parseInt(System.console().readLine());
                     try {
-                        bookService.findBooksByYear(year3);
+                        System.out.println(bookService.findBooksByYear(year3));
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -216,7 +214,7 @@ public class Menu {
                     System.out.println("Introduce el nombre del autor: ");
                     String nameAuthor5 = System.console().readLine();
                     try {
-                        authorService.findAuthorByName(nameAuthor5);
+                        System.out.println(authorService.findAuthorByName(nameAuthor5));
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }

@@ -12,9 +12,9 @@ public class PublisherService {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name cannot be null or empty");
         }
-        
+
         if (dao.findPublisherByName(name) != null) {
-            return dao.findPublisherByName(name);
+            throw new IllegalArgumentException("Publisher already exists");
         }
 
         Publisher publisher = new Publisher();
@@ -33,8 +33,12 @@ public class PublisherService {
             throw new IllegalArgumentException("Name cannot be null or empty");
         }
 
-        Publisher publisher = new Publisher();
-        publisher.setId(id);
+        Publisher publisher = findPublisherById(id);
+
+        if (publisher == null) {
+            throw new IllegalArgumentException("Publisher does not exist");
+        }
+
         publisher.setName(name);
 
         dao.update(publisher);
@@ -46,7 +50,11 @@ public class PublisherService {
         }
 
         Publisher publisher = dao.findPublisherById(id);
-        publisher.setId(id);
+
+        if (publisher == null) {
+            throw new IllegalArgumentException("Publisher does not exist");
+        }
+
         publisher.setRegistered(false);
 
         dao.delete(publisher);
@@ -59,6 +67,10 @@ public class PublisherService {
 
         Publisher publisher = dao.findPublisherById(id);
 
+        if (publisher == null) {
+            throw new IllegalArgumentException("Publisher does not exist");
+        }
+
         return publisher;
     }
 
@@ -69,11 +81,15 @@ public class PublisherService {
 
         Publisher publisher = dao.findPublisherByName(name);
 
+        if (publisher == null) {
+            throw new IllegalArgumentException("Publisher does not exist");
+        }
+
         return publisher;
     }
 
     public void showPublishers() throws Exception {
-        List<Publisher> publishers = dao.showPublishers();
+        List<Publisher> publishers = dao.findAll(Publisher.class);
 
         for (Publisher publisher : publishers) {
             System.out.println(publisher.getName());
