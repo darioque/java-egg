@@ -1,5 +1,7 @@
 package com.jpa.services;
 
+import org.checkerframework.checker.units.qual.A;
+
 import com.jpa.entities.Author;
 import com.jpa.entities.Publisher;
 
@@ -150,7 +152,8 @@ public class Menu {
                     System.out.println("Introduce el id del autor: ");
                     Integer authorId2 = Integer.parseInt(System.console().readLine());
                     try {
-                        authorService.findAuthorById(authorId2);
+                        Author author1 = authorService.findAuthorById(authorId2);
+                        System.out.println(author1.getName());
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }

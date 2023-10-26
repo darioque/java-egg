@@ -29,4 +29,9 @@ public class DAO<T> {
         em.getTransaction().commit();
         return entity;
     }
+
+    public T find(Class<T> type, Object id) {
+        T entity = em.find(type, id);
+        return entity;
+    }
 }

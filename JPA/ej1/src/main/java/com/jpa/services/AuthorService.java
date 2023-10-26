@@ -45,7 +45,7 @@ public class AuthorService {
             throw new IllegalArgumentException("Id cannot be null");
         }
 
-        Author author = dao.findAuthorById(id);
+        Author author = dao.find(Author.class, id);
         author.setId(id);
         author.setRegistered(false);
 
@@ -57,7 +57,7 @@ public class AuthorService {
             throw new IllegalArgumentException("Id cannot be null");
         }
 
-        Author author = dao.findAuthorById(id);
+        Author author = dao.find(Author.class, id);
 
         return author;
     }

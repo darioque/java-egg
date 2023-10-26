@@ -22,15 +22,6 @@ public final class AuthorDAO extends DAO<Author> {
 
     }
 
-    public Author findAuthorById(Integer id) throws Exception {
-        try {
-            Author author = em.find(Author.class, id);
-            return author;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
     public Author findAuthorByName(String name) throws Exception {
         try {
             Author author = (Author) em.createQuery("SELECT a FROM Author a WHERE a.name = :name")
