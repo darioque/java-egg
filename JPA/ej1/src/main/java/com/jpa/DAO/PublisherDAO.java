@@ -4,64 +4,23 @@ import java.util.List;
 
 import com.jpa.entities.Publisher;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
-public class PublisherDAO {
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("library-app");
-    private EntityManager em = emf.createEntityManager();
+public final class PublisherDAO extends DAO<Publisher> {
 
-    public Publisher savePublisher(Publisher publisher) throws Exception {
-        try {
-            em.getTransaction().begin();
-            em.persist(publisher);
-            em.getTransaction().commit();
-
-            return publisher;
-        } catch (Exception e) {
-            throw new Exception();
-        }
+    public PublisherDAO() {
+        super();
     }
 
-    public Publisher modifyPublisher(Publisher publisher) throws Exception {
-
-        try {
-
-            em.getTransaction().begin();
-            em.merge(publisher);
-            em.getTransaction().commit();
-
-            return publisher;
-        } catch (Exception e) {
-            throw new Exception();
-        }
-    }
-
-    public Publisher removePublisher(Publisher publisher) throws Exception {
-
-        try {
-
-            em.getTransaction().begin();
-            em.remove(publisher);
-            em.getTransaction().commit();
-
-            return publisher;
-        } catch (Exception e) {
-            throw new Exception();
-        }
-    }
 
     public List<Publisher> showPublishers() throws Exception {
-
         try {
-            List<Publisher> publishers = em.createQuery("SELECT * FROM Publisher p").getResultList();
-
+            TypedQuery<Publisher> query = em.createQuery("SELECT p FROM Publisher p", Publisher.class);
+            List<Publisher> publishers = query.getResultList();
             return publishers;
         } catch (Exception e) {
             throw new Exception();
         }
-
     }
 
     public Publisher findPublisherById(Integer id) throws Exception {

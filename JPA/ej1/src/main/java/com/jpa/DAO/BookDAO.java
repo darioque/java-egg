@@ -6,65 +6,20 @@ import com.jpa.entities.Author;
 import com.jpa.entities.Book;
 import com.jpa.entities.Publisher;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
-public class BookDAO {
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("library-app");
-    private EntityManager em = emf.createEntityManager();
+public final class BookDAO extends DAO<Book> {
 
-    public Book saveBook(Book book) throws Exception {
-        try {
-            Book book1 = findBookByIsbn(book.getIsbn());
-            if (book1 != null) {
-                throw new Exception("Book already exists");
-            }
-
-            em.getTransaction().begin();
-            em.persist(book);
-            em.getTransaction().commit();
-
-            return book;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new Exception();
-        }
+    public BookDAO() {
+        super();
     }
 
-    public Book modifyBook(Book book) throws Exception {
-
-        try {
-
-            em.getTransaction().begin();
-            em.merge(book);
-            em.getTransaction().commit();
-
-            return book;
-        } catch (Exception e) {
-            throw new Exception();
-        }
-    }
-
-    public Book removeBook(Book book) throws Exception {
-
-        try {
-
-            em.getTransaction().begin();
-            em.remove(book);
-            em.getTransaction().commit();
-
-            return book;
-        } catch (Exception e) {
-            throw new Exception();
-        }
-    }
 
     public List<Book> showBooks() throws Exception {
 
         try {
-            List<Book> books = em.createQuery("SELECT b FROM Book b").getResultList();
-
+            TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b", Book.class);
+            List<Book> books = query.getResultList();
             return books;
         } catch (Exception e) {
             throw new Exception();
@@ -94,8 +49,8 @@ public class BookDAO {
 
     public List<Book> findBooksByYear(Integer year) throws Exception {
         try {
-            List<Book> books = em.createQuery("SELECT * FROM Book b where year = :year")
-                    .setParameter("year", year).getResultList();
+            TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b where year = :year", Book.class).setParameter("year", year);
+            List<Book> books = query.setParameter("year", year).getResultList();
 
             return books;
         } catch (Exception e) {
@@ -106,9 +61,8 @@ public class BookDAO {
     public List<Book> findBooksByAuthor(Author author) throws Exception {
         try {
             Integer authorId = author.getId();
-            List<Book> books = em.createQuery("SELECT * FROM Book b where author_id = :author_id")
-                    .setParameter("author_id", authorId).getResultList();
-
+            TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b where author_id = :author_id", Book.class).setParameter("author_id", authorId);
+            List<Book> books = query.setParameter("author_id", authorId).getResultList();
             return books;
         } catch (Exception e) {
             throw new Exception();
@@ -118,9 +72,8 @@ public class BookDAO {
     public List<Book> findBooksByPublisher(Publisher publisher) throws Exception {
         try {
             Integer publisherId = publisher.getId();
-            List<Book> books = em.createQuery("SELECT * FROM Book b where publisher_id = :publisher_id")
-                    .setParameter("publisher_id", publisherId).getResultList();
-
+            TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b where publisher_id = :publisher_id", Book.class).setParameter("publisher_id", publisherId);
+            List<Book> books = query.setParameter("publisher_id", publisherId).getResultList();
             return books;
         } catch (Exception e) {
             throw new Exception();

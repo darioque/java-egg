@@ -52,7 +52,7 @@ public class BookService {
         book.setAuthor(author);
         book.setPublisher(publisher);
 
-        return dao.saveBook(book);
+        return dao.create(book);
     }
 
     public void modifyBook(Long isbn, String title, Integer year, Integer copy, Author author, Publisher publisher) throws Exception {
@@ -92,7 +92,7 @@ public class BookService {
         book.setAuthor(author);
         book.setPublisher(publisher);
 
-        dao.modifyBook(book);
+        dao.update(book);
     }
 
     public void removeBook(Long isbn) throws Exception {
@@ -104,7 +104,7 @@ public class BookService {
 
         book.setRegistered(false);
 
-        dao.removeBook(book);
+        dao.delete(book);
     }
 
         public void showBooks() throws Exception {

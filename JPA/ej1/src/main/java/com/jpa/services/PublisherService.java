@@ -12,7 +12,7 @@ public class PublisherService {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name cannot be null or empty");
         }
-
+        
         if (dao.findPublisherByName(name) != null) {
             return dao.findPublisherByName(name);
         }
@@ -21,7 +21,7 @@ public class PublisherService {
         publisher.setName(name);
         publisher.setRegistered(true);
 
-        return dao.savePublisher(publisher);
+        return dao.create(publisher);
     }
 
     public void modifyPublisher(Integer id, String name) throws Exception {
@@ -37,7 +37,7 @@ public class PublisherService {
         publisher.setId(id);
         publisher.setName(name);
 
-        dao.modifyPublisher(publisher);
+        dao.update(publisher);
     }
 
     public void removePublisher(Integer id) throws Exception {
@@ -49,7 +49,7 @@ public class PublisherService {
         publisher.setId(id);
         publisher.setRegistered(false);
 
-        dao.removePublisher(publisher);
+        dao.delete(publisher);
     }
 
     public Publisher findPublisherById(Integer id) throws Exception {

@@ -21,7 +21,7 @@ public class AuthorService {
         author.setName(name);
         author.setRegistered(true);
 
-        return dao.saveAuthor(author);
+        return dao.create(author);
     }
 
     public void modifyAuthor(Integer id, String name) throws Exception {
@@ -37,7 +37,7 @@ public class AuthorService {
         author.setId(id);
         author.setName(name);
 
-        dao.modifyAuthor(author);
+        dao.update(author);
     }
 
     public void removeAuthor(Integer id) throws Exception {
@@ -49,7 +49,7 @@ public class AuthorService {
         author.setId(id);
         author.setRegistered(false);
 
-        dao.removeAuthor(author);
+        dao.delete(author);
     }
 
     public Author findAuthorById(Integer id) throws Exception {
