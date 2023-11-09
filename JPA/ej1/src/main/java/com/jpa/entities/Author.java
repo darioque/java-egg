@@ -12,11 +12,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Authors") // Specify the table name as "Authors"
+@Table(name = "Authors")
 public class Author {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private Boolean registered;
+
+    public Author(String name) {
+        this.name = name;
+        this.registered = true;
+    }
 }

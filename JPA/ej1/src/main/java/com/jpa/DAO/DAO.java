@@ -7,7 +7,7 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 
 public class DAO<T> {
-    protected static final String PERSISTENCE_UNIT_NAME = "library-app";
+    protected static final String PERSISTENCE_UNIT_NAME = "books-app";
     protected static final EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     protected static jakarta.persistence.EntityManager em = FACTORY.createEntityManager();
 

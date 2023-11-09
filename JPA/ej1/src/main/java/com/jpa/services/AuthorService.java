@@ -17,11 +17,7 @@ public class AuthorService {
             throw new IllegalArgumentException("Author already exists");
         }
 
-        Author author = new Author();
-        author.setName(name);
-        author.setRegistered(true);
-
-        return dao.create(author);
+        return dao.create(new Author(name));
     }
 
     public void modifyAuthor(Integer id, String name) throws Exception {

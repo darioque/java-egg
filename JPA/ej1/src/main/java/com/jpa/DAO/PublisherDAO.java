@@ -4,10 +4,6 @@ import com.jpa.entities.Publisher;
 
 public final class PublisherDAO extends DAO<Publisher> {
 
-    public PublisherDAO() {
-        super();
-    }
-
     public Publisher findPublisherById(Integer id) throws Exception {
         try {
             Publisher publisher = em.find(Publisher.class, id);

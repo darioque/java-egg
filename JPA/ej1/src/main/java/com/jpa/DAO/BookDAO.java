@@ -10,10 +10,6 @@ import jakarta.persistence.TypedQuery;
 
 public final class BookDAO extends DAO<Book> {
 
-    public BookDAO() {
-        super();
-    }
-
     public Book findBookByTitle(String title) throws Exception {
         try {
             Book book = em.createQuery("SELECT b FROM Book b where title = :title", Book.class)
