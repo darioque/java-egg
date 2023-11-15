@@ -5,19 +5,27 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.darioque.spring1.entities.Publisher;
+import com.darioque.spring1.exceptions.MyException;
 import com.darioque.spring1.repositories.PublisherRepository;
 
+@Service
 public class PublisherService {
     @Autowired
     private PublisherRepository publisherRepository;
 
     @Transactional
-    public Publisher createPublisher(String name) {
+    public Publisher createPublisher(String name) throws MyException {
+
+        if (name == null || name.isEmpty()) {
+            throw new MyException("Can't create publisher, name is empty");
+        }
+
         if (publisherRepository.findByName(name) != null) {
-            return null;
+            throw new MyException("Can't create publisher, name already exists");
         }
 
         Publisher publisher = new Publisher();

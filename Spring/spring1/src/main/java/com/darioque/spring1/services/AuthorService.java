@@ -1,17 +1,18 @@
 package com.darioque.spring1.services;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.darioque.spring1.entities.Author;
 import com.darioque.spring1.exceptions.MyException;
 import com.darioque.spring1.repositories.AuthorRepository;
 
+@Service
 public class AuthorService {
 
     @Autowired
@@ -19,6 +20,11 @@ public class AuthorService {
     
     @Transactional
     public Author createAuthor(String name) throws MyException{
+
+        if (name == null || name.isEmpty()) {
+            throw new MyException("Can't create author, name is empty");
+        }
+
         if (authorRepository.findByName(name) != null) {
             throw new MyException("Can't create author, name already exists");
         }
