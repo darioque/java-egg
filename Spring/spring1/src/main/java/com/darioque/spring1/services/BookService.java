@@ -32,7 +32,7 @@ public class BookService {
 
         validate(isbn, title, copies, idAuthor, idPublisher);
 
-        if (bookRepository.findById(isbn) != null) {
+        if (bookRepository.findById(isbn).isPresent()) {
             throw new MyException("Can't create book, isbn already exists");
         }
 
@@ -111,9 +111,26 @@ public class BookService {
     }
 
     private void validate(String isbn, String title, Integer copies, String idAuthor, String idPublisher) throws MyException {
-        if (isbn == null || isbn.isEmpty() || title == null || title.isEmpty() || copies == null || copies < 0
-                || idAuthor == null || idAuthor.isEmpty() || idPublisher == null || idPublisher.isEmpty()) {
-            throw new MyException("Invalid data");
+        if (isbn == null || isbn.isEmpty()) {
+            throw new MyException("Can't create book, isbn is empty");
         }
+
+        if (title == null || title.isEmpty()) {
+            throw new MyException("Can't create book, title is empty");
+        }
+
+        if (copies == null) {
+            throw new MyException("Can't create book, copies is empty");
+        }
+
+        if (idAuthor == null || idAuthor.isEmpty()) {
+            throw new MyException("Can't create book, author is empty");
+        }
+
+        if (idPublisher == null || idPublisher.isEmpty()) {
+            throw new MyException("Can't create book, publisher is empty");
+        }
+
+
     }
 }
